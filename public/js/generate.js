@@ -1,40 +1,30 @@
-const form = document.getElementById('form');
-const qrContainer = document.getElementById('qrContainer');
-const generatedLink = document.getElementById('generatedLink');
-
-form.addEventListener('submit', (e) => {
+// public/js/generate.js
+document.getElementById('form').addEventListener('submit', function (e) {
     e.preventDefault();
-    
-    // Generar ID único para el perfil
-    const profileId = Date.now().toString();
-    
-    // Crear objeto con los datos del formulario
-    const profileData = {
+
+    const profile = {
         name: document.getElementById('name').value,
         role: document.getElementById('role').value,
         company: document.getElementById('company').value,
         phone: document.getElementById('phone').value,
         email: document.getElementById('email').value,
-        website: document.getElementById('website').value
+        website: document.getElementById('website').value,
     };
 
-    // Guardar en localStorage
+    const id = crypto.randomUUID();
     const profiles = JSON.parse(localStorage.getItem('profiles') || '{}');
-    profiles[profileId] = profileData;
+    profiles[id] = profile;
     localStorage.setItem('profiles', JSON.stringify(profiles));
 
-    // Obtener la URL base del sitio
-    const baseUrl = window.location.origin + window.location.pathname.replace('index.html', '');
-    const profileUrl = `${baseUrl}profile.html?id=${profileId}`;
-
-    // Generar QR
+    // Generar QR con link al perfil
+    const profileUrl = `${window.location.origin}/profile.html?id=${id}`;
+    const qrContainer = document.getElementById('qrContainer');
     qrContainer.innerHTML = '';
-    new QRCode(qrContainer, {
-        text: profileUrl,
-        width: 256,
-        height: 256
-    });
+    new QRCode(qrContainer, profileUrl);
 
-    // Mostrar enlace generado
-    generatedLink.innerHTML = `<p>Link directo: <a href="${profileUrl}" target="_blank">${profileUrl}</a></p>`;
+    // Mostrar link generado
+    document.getElementById('generatedLink').innerHTML = `
+        <p>Compartí este enlace:</p>
+        <a href="${profileUrl}" target="_blank">${profileUrl}</a>
+    `;
 });

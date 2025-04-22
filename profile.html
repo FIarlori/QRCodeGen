@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Generar Tarjeta</title>
-  <link rel="stylesheet" href="public/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Contacto Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/profile.css">
+    <meta http-equiv="refresh" content="2;url=javascript:window.close()">
 </head>
 <body>
-  <h2>Crear Tarjeta Digital</h2>
-  <form id="form">
-    <input type="text" id="name" placeholder="Nombre completo" required>
-    <input type="text" id="role" placeholder="Cargo" required>
-    <input type="text" id="company" placeholder="Empresa" required>
-    <input type="tel" id="phone" placeholder="Teléfono" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="url" id="website" placeholder="Sitio Web" required>
-    <button type="submit">Generar</button>
-  </form>
-  <div id="qrContainer"></div>
-  <div id="generatedLink"></div>
-
-  <script src="public/js/generate.js"></script>
+    <div class="profile-container">
+        <div class="profile-card">
+            <h1 id="displayName"></h1>
+            <p id="displayRole"></p>
+            <p id="displayCompany"></p>
+            
+            <div class="contact-buttons">
+                <a id="phoneButton" class="button">
+                    <img src="public/images/phone-icon.png" alt="Llamar">
+                    Llamar
+                </a>
+                <a id="emailButton" class="button">
+                    <img src="public/images/email-icon.png" alt="Email">
+                    Enviar Email
+                </a>
+                <a id="websiteButton" class="button">
+                    <img src="public/images/web-icon.png" alt="Sitio Web">
+                    Visitar Web
+                </a>
+            </div>
+            
+            <p style="margin-top: 20px; color: #666;">
+                El contacto se ha descargado automáticamente. 
+                <br>Esta ventana se cerrará en 2 segundos.
+            </p>
+        </div>
+    </div>
+    <script src="public/js/profile.js"></script>
 </body>
 </html>
