@@ -1,4 +1,3 @@
-// public/js/generate.js
 document.getElementById('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -11,18 +10,20 @@ document.getElementById('form').addEventListener('submit', function (e) {
         website: document.getElementById('website').value,
     };
 
-    const id = crypto.randomUUID();
-    const profiles = JSON.parse(localStorage.getItem('profiles') || '{}');
-    profiles[id] = profile;
-    localStorage.setItem('profiles', JSON.stringify(profiles));
-
-    // Generar QR con link al perfil
-    const profileUrl = `${window.location.origin}/profile.html?id=${id}`;
+    // Generate URL with all parameters directly
+    const params = new URLSearchParams(profile);
+    const profileUrl = `${window.location.origin}/QRCodeGen/profile.html?${params.toString()}`;
+    
+    // Generate QR code
     const qrContainer = document.getElementById('qrContainer');
     qrContainer.innerHTML = '';
-    new QRCode(qrContainer, profileUrl);
+    new QRCode(qrContainer, {
+        text: profileUrl,
+        width: 256,
+        height: 256
+    });
 
-    // Mostrar link generado
+    // Show generated link
     document.getElementById('generatedLink').innerHTML = `
         <p>Compartí este enlace:</p>
         <a href="${profileUrl}" target="_blank">${profileUrl}</a>

@@ -2,39 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Contacto Digital</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/profile.css">
-    <meta http-equiv="refresh" content="2;url=javascript:window.close()">
+    <title>Perfil Digital</title>
+    <style>
+        .profile-card {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .contact-button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="profile-card">
-            <h1 id="displayName"></h1>
-            <p id="displayRole"></p>
-            <p id="displayCompany"></p>
-            
-            <div class="contact-buttons">
-                <a id="phoneButton" class="button">
-                    <img src="public/images/phone-icon.png" alt="Llamar">
-                    Llamar
-                </a>
-                <a id="emailButton" class="button">
-                    <img src="public/images/email-icon.png" alt="Email">
-                    Enviar Email
-                </a>
-                <a id="websiteButton" class="button">
-                    <img src="public/images/web-icon.png" alt="Sitio Web">
-                    Visitar Web
-                </a>
-            </div>
-            
-            <p style="margin-top: 20px; color: #666;">
-                El contacto se ha descargado automáticamente. 
-                <br>Esta ventana se cerrará en 2 segundos.
-            </p>
+    <div class="profile-card">
+        <h1 id="name"></h1>
+        <h2 id="role"></h2>
+        <p id="company"></p>
+        <div class="contact-buttons">
+            <a id="phoneBtn" class="contact-button">Llamar</a>
+            <a id="emailBtn" class="contact-button">Enviar Email</a>
+            <a id="websiteBtn" class="contact-button">Visitar Sitio Web</a>
         </div>
     </div>
-    <script src="public/js/profile.js"></script>
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        
+        // Display information
+        document.getElementById('name').textContent = params.get('name');
+        document.getElementById('role').textContent = params.get('role');
+        document.getElementById('company').textContent = params.get('company');
+        
+        // Setup action buttons
+        document.getElementById('phoneBtn').href = `tel:${params.get('phone')}`;
+        document.getElementById('emailBtn').href = `mailto:${params.get('email')}`;
+        document.getElementById('websiteBtn').href = params.get('website');
+    </script>
 </body>
 </html>
