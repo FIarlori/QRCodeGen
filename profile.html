@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generar Tarjeta</title>
+  <link rel="stylesheet" href="public/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <h2>Crear Tarjeta Digital</h2>
+  <form id="form">
+    <input type="text" id="name" placeholder="Nombre completo" required>
+    <input type="text" id="role" placeholder="Cargo" required>
+    <input type="text" id="company" placeholder="Empresa" required>
+    <input type="tel" id="phone" placeholder="Teléfono" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="url" id="website" placeholder="Sitio Web" required>
+    <button type="submit">Generar</button>
+  </form>
+  <div id="qrContainer"></div>
+  <div id="generatedLink"></div>
+
+  <script src="public/js/generate.js"></script>
+</body>
+</html>

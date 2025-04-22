@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador QR BAIPRO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Generador de Tarjeta Digital</h2>
+        <form id="form">
+            <input type="text" id="name" placeholder="Nombre completo" required>
+            <input type="text" id="role" placeholder="Cargo" required>
+            <input type="text" id="company" placeholder="Empresa" required>
+            <input type="tel" id="phone" placeholder="Teléfono" required>
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="url" id="website" placeholder="Sitio web" required>
+            <button type="submit">Generar QR</button>
+        </form>
+        <div id="qrContainer"></div>
+        <div id="generatedLink"></div>
+    </div>
+
+    <script src="public/js/generate.js"></script>
+</body>
+</html>
